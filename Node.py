@@ -30,8 +30,20 @@ class Node:
 
     def get_sorted_edge_list(self) -> list:
         result = []
-        neighbors = (list)(self.edges.keys())
+        neighbors = list((self.edges.keys()))
         neighbors.sort()
         for n in neighbors:
             result.append(self.edges[n])
         return result
+
+    def get_neighbors(self) -> set:
+        neighbors: set = set()
+        for edge in self.edges.values():
+            neighbors.add(edge.to_node)
+        return neighbors
+
+    def get_out_neighbors(self) -> set:
+        neighbors: set = set()
+        for edge in self.edges.values():
+            neighbors.add(edge.to_node)
+        return neighbors

@@ -53,6 +53,18 @@ class Graph:
             for edge in node.edges.values():
                  g2.insert_edge(edge.from_node, edge.to_node, edge.weight)
         return g2
+    def insert_node(self, label=None) -> Node:
+        new_node: Node = Node(self.num_nodes, label=label)
+        self.nodes.append(new_node)
+        self.num_nodes += 1
+        return new_node
+
+    def get_in_neighbors(self, target: int) -> set:
+        neighbors: set = set()
+        for node in self.nodes:
+            if target in node.edges:
+                neighbors.add(node.index)
+        return neighbors
 
 if __name__ == '__main__':
     g: Graph = Graph(5, undirected=False)
@@ -69,3 +81,6 @@ if __name__ == '__main__':
         for edge in node.edges.values():
             print(edge.to_node, end='\t')
         print()
+
+        for edge2 in node.get_sorted_edge_list():
+            print(edge2)
